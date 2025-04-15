@@ -1,0 +1,17 @@
+FROM node:21
+
+WORKDIR /usr/src/app
+
+#COPY ./src .
+COPY . .
+
+RUN npm install
+
+RUN npm run build
+
+# to clear some space from the image's file system
+RUN rm -rf ./src
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start:dev"]
